@@ -3,6 +3,13 @@
 A testing project for learning purposes.
 
 # Build
+## With docker
+
+```bash
+make docker-build && make compile && make run
+```
+
+## Native
 
 In order to build source code you need to install SDL and CMake first:
 
