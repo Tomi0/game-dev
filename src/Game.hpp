@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include "Player.hpp"
 
 class Game
 {
@@ -7,6 +8,7 @@ private:
     bool isRunning;
     SDL_Window *window;
     SDL_Renderer *renderer;
+    Player *player;
 
 public:
     Game();
@@ -16,4 +18,5 @@ public:
     void render();
     void clean();
     bool running();
+    void set_player(Player *player);
 };
