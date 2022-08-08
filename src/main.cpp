@@ -2,35 +2,37 @@
 
 #include "Game.hpp"
 #include "Player.hpp"
+#include "Window.hpp"
 
 int main()
 {
+    Window *window = new Window("Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
     Game *game = new Game();
-    Player *player = new Player(50, 50);
-
-    game->set_player(player);
-    game->init_window("Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    window->set_game(game);
 
     Uint64 start;
     Uint64 end;
+    float elapsedMS;
 
-    while (game->running())
-    {
+    while (game->running()) {
         start = SDL_GetPerformanceCounter();
         
         game->handleEvents();
         game->update();
-        game->render();
+        window->render();
 
         end = SDL_GetPerformanceCounter();
 
-        float elapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
+        elapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
 
 	    // Cap to 60 FPS
 	    SDL_Delay(floor(16.666f - elapsedMS));
     }
 
-    game->clean();
+    window->destroy();
+
+    delete window;
+    delete game;
   
     return 0;
 }

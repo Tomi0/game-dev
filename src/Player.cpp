@@ -1,5 +1,4 @@
 #include "Player.hpp"
-#include <SDL2/SDL.h>
 #include <iostream>
 
 Player::Player() {
@@ -10,17 +9,6 @@ Player::Player() {
 Player::Player(int x_pos, int y_pos) {
     this->x_pos = x_pos;
     this->y_pos = y_pos;
-}
-
-void Player::render(SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_Rect sdl_rect;
-    sdl_rect.y = this->y_pos;
-    sdl_rect.x = this->x_pos;
-    sdl_rect.h = this->height;
-    sdl_rect.w = this->width;
-    SDL_RenderDrawRect(renderer, &sdl_rect);
-    SDL_RenderFillRect(renderer, &sdl_rect);
 }
 
 void Player::moving_left(bool is_moving) {
@@ -59,3 +47,8 @@ void Player::move() {
     this->x_pos += this->x_movement;
     this->y_pos += this->y_movement;
 }
+
+int Player::get_x_pos() { return this->x_pos; }
+int Player::get_y_pos() { return this->y_pos; }
+int Player::get_height() { return this->height; }
+int Player::get_width() { return this->width; }

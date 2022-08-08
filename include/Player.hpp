@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-
 class Player
 {
 private:
@@ -16,10 +14,13 @@ private:
 public:
     Player();
     Player(int x_pos, int y_pos);
-    void render(SDL_Renderer *renderer);
     void moving_left(bool is_moving);
     void moving_right(bool is_moving);
     void moving_up(bool is_moving);
     void moving_down(bool is_moving);
+    int get_x_pos();
+    int get_y_pos();
+    int get_height();
+    int get_width();
     void move();
 };
